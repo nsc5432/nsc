@@ -4,11 +4,19 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%!
+	boolean loginStatus=false;
+%>
 <%
 	String id = null;
+	
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
+		loginStatus=true;
+	}else{
+		loginStatus=false;
 	}
+	
 	ArrayList<BoardDTO> boardList = (ArrayList<BoardDTO>)request.getAttribute("boardlist");
 	int listcount = ((Integer)request.getAttribute("listcount")).intValue();
 	int nowpage = ((Integer)request.getAttribute("page")).intValue();
@@ -23,6 +31,18 @@
 <title>mvc 게시판</title>
 </head>
 <body>
+<%
+	if(loginStatus){
+%>
+		<%=id %> &nbsp;
+		<a href="./MemberLogoutCommand.me">로그아웃</a>		
+<%
+	}else{
+%>
+		<a href="./MemberLogin.me">로그인</a>
+<% 
+	}
+%>
 <table width=50% border="0" cellpadding="0" cellspacing="0">
 	<tr align ="center" valign="middle">
 		<td colspan="4"> MVC 게시판</td>

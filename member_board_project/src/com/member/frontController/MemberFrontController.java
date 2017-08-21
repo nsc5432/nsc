@@ -13,6 +13,7 @@ import com.member.command.MemberDeleteCommand;
 import com.member.command.MemberJoinCommand;
 import com.member.command.MemberListCommand;
 import com.member.command.MemberLoginCommand;
+import com.member.command.MemberLogoutCommand;
 import com.member.command.MemberViewCommand;
 
 
@@ -78,6 +79,10 @@ public class MemberFrontController extends HttpServlet {
 			memberCommand = new MemberDeleteCommand();
 			memberCommand.execute(request, response);
 			viewPage="/MemberListCommand.me";
+		}else if(command.equals("/MemberLogoutCommand.me")){
+			memberCommand = new MemberLogoutCommand();
+			memberCommand.execute(request, response);
+			viewPage="/BoardList.bo";
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
