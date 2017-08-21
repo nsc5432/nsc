@@ -1,0 +1,2 @@
+# nsc
+member &amp; board
