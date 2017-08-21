@@ -1,10 +1,19 @@
-<%@page import="com.board.db.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
+<%
+	String id = (String)session.getAttribute("id");
+	if(id==null){
+%>		
+	<script type="text/javascript">
+		alert("로그인을 해주세요!");
+		location.href="./MemberLogin.me";
+	</script>
+<%
+	}
+%>
 <title>MVC 게시판</title>
 <script language="javascript">
 	function addboard(){
@@ -23,7 +32,7 @@
 				<div align="center">글쓴이</div> 
 			</td>
 			<td>
-				<input type="text" name="BOARD_NAME" size="10" maxlength="10">
+				<input type="text" name="BOARD_NAME" value="<%=id %>" readonly/>
 			</td>
 		</tr>
 		<tr>
